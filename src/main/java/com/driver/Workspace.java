@@ -1,7 +1,10 @@
 package com.driver;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Workspace extends Gmail{
 
@@ -9,14 +12,15 @@ public class Workspace extends Gmail{
 
     public Workspace(String emailId) {
         // The inboxCapacity is equal to the maximum value an integer can store.
-        super(emailId, Integer.MAX_VALUE);
+        super(emailId,Integer.MAX_VALUE);
         this.calendar = new ArrayList<>();
     }
 
     public void addMeeting(Meeting meeting){
-        //add the meeting to calendar
+        // Add the meeting to calendar
         calendar.add(meeting);
     }
+
 
     public int findMaxMeetings(){
         // find the maximum number of meetings you can attend
@@ -25,8 +29,8 @@ public class Workspace extends Gmail{
         // Example: If a meeting ends at 10:00 am, you cannot attend another meeting starting at 10:00 am
         int maxMeetings = 0;
         LocalTime endTime = LocalTime.MIN;
-        for(Meeting meeting : calendar) {
-            if(meeting.getStartTime().isAfter(endTime)) {
+        for (Meeting meeting : calendar) {
+            if (meeting.getStartTime().isAfter(endTime)) {
                 maxMeetings++;
                 endTime = meeting.getEndTime();
             }
