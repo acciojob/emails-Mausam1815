@@ -42,11 +42,11 @@ public class Email {
         boolean containsSpecialChar = false;
         for(int i=0; i<newPassword.length(); i++) {
             char c = newPassword.charAt(i);
-            if(c >= 'A' || c <= 'Z') {
+            if(c >= 'A' && c <= 'Z') {
                 containsUppercase = true;
-            }else if(c >= 'a' || c <= 'z') {
+            }else if(c >= 'a' && c <= 'z') {
                 containsLowercase = true;
-            }else if(c >= '0' || c <= '9') {
+            }else if(c >= '0' && c <= '9') {
                 containsDigit = true;
             }else {
                 containsSpecialChar = true;
