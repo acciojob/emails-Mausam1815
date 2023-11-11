@@ -36,8 +36,8 @@ public class Gmail extends Email {
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
         for(Mail mail : inbox) {
             if(mail.getMessage().equals(message)) {
-                trash.add(mail);
                 inbox.remove(mail);
+                trash.add(mail);
                 break;
             }
         }
@@ -49,7 +49,8 @@ public class Gmail extends Email {
         if(inbox.isEmpty()) {
             return null;
         }
-        return inbox.get(inbox.size() - 1).getMessage();
+        Mail latestMail = inbox.get(inbox.size() - 1);
+        return latestMail.getMessage();
     }
 
     public String findOldestMessage(){
@@ -91,5 +92,32 @@ public class Gmail extends Email {
     public int getInboxCapacity() {
         // Return the maximum number of mails that can be stored in the inbox
         return inboxCapacity;
+    }
+
+    public static class Mail {
+        private Date date;
+        private String sender;
+        private String message;
+        public Mail() {
+
+        }
+
+        public Mail(Date date, String sender, String message) {
+            this.date = date;
+            this.sender = sender;
+            this.message = message;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public String getSender() {
+            return sender;
+        }
+
+        public String getMessage() {
+            return message;
+        }
     }
 }
